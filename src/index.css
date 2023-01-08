@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.heading {
+  font-family: 'Nabla', cursive;
+  font-size: 60px;
+}
+
+.book {
+  height: fit-content;
+}
