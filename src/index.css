@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 .heading {
-  font-family: 'Nabla', cursive;
   font-size: 60px;
 }
 

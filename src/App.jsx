@@ -6,7 +6,7 @@ import Grid from './components/Grid';
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Grid />
     </>
   );
