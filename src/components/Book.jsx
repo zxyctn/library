@@ -19,15 +19,14 @@ const Book = ({ info }) => {
   return (
     <>
       <div
-        className='flex xl:p-12 md:p-10 p-5 justify-center'
-        style={{ zIndex: 1 }}
-      >
-        <img className='' src={book.cover} />
-      </div>
-      <div
-        className='absolute w-full'
-        style={{ background: bg, height: '60%', bottom: '0' }}
+        className='h-80 w-80 absolute'
+        style={{
+          background: bg,
+          height: `${(book.read / book.pages) * 100}%`,
+          bottom: 0,
+        }}
       ></div>
+      <img className='h-72' src={book.cover} style={{ zIndex: 1 }} />
     </>
   );
 };

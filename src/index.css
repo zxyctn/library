@@ -1,13 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,700;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.heading {
-  font-size: 60px;
+body {
+  font-family: 'Libre Bodoni', serif;
+  font-size: xx-large;
 }
 
-.book {
-  height: fit-content;
+.input {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.button {
+  border: 1px solid black;
+  background: transparent;
+  font-size: large;
+}
+
+.button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.reverse {
+  background-color: black;
+  color: white;
+}
+
+.reverse:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.reverse:active {
+  background: rgba(0, 0, 0, 0.7);
 }
