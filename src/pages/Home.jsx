@@ -14,7 +14,7 @@ const Home = () => {
     return <div className='grid place-items-center h-full'>...</div>;
   }
   return (
-    <div className='grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 place-items-center gap-8 pb-8'>
+    <div className='grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 place-items-center gap-8 pb-8 mt-40'>
       {books.map((book) => (
         <div
           key={book.id}

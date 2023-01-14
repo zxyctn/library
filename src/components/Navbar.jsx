@@ -7,7 +7,7 @@ const Navbar = () => {
   const context = useContext(LibraryContext);
 
   return (
-    <div className='flex bg-transparent justify-between my-10'>
+    <div className='flex bg-transparent justify-between my-10 px-10 absolute w-screen h-20'>
       <Link to='/'>library</Link>
       {context.displayX ? (
         <Link to='/'>

@@ -9,7 +9,7 @@ function App() {
   return (
     <LibraryProvider>
       <Router>
-        <div className='mx-auto px-10 h-screen'>
+        <div className='flex flex-col h-screen w-screen'>
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />

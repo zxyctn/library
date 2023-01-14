@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 
 import LibraryContext from '../context/library/LibraryContext';
+import AddISBN from '../components/AddISBN';
+import AddManual from '../components/AddManual';
 
 const Add = () => {
   const [isManual, setIsManual] = useState(false);
@@ -11,16 +13,13 @@ const Add = () => {
   }, [dispatch]);
 
   return (
-    <div className='flex justify-center items-center h-full'>
-      <div className='grid grid-cols-1 gap-4'>
-        <h1>Add</h1>
-        <input
-          className='input w-full focus:ring-0 focus:outline-none'
-          type='text'
-          placeholder='ISBN'
-        ></input>
-        <button className='button w-full py-1'>Search</button>
-        <button className='button w-full py-1 reverse'>Manual Import</button>
+    <div className='flex justify-center items-center flex-grow h-full w-full'>
+      <div className='grid grid-cols-1 w-screen h-full'>
+        {isManual ? (
+          <AddManual toggler={() => setIsManual(false)} />
+        ) : (
+          <AddISBN toggler={() => setIsManual(true)} />
+        )}
       </div>
     </div>
   );

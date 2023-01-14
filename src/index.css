@@ -44,3 +44,16 @@ body {
 .reverse:active {
   background: rgba(0, 0, 0, 0.7);
 }
+
+.title {
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.author {
+  font-size: x-large;
+}
+
+.publisher {
+  font-size: large;
+}
