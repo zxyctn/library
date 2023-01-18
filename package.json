@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "camelcase": "^7.0.1",
     "fast-average-color": "^9.3.0",
     "flowbite": "^1.6.0",
     "flowbite-react": "^0.3.7",
+    "node-isbn": "^1.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2"

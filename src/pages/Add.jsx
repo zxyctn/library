@@ -1,26 +1,165 @@
 import { useState, useContext, useEffect } from 'react';
+import { FastAverageColor } from 'fast-average-color';
+import isbn from 'node-isbn';
 
+import Input from '../components/Input';
 import LibraryContext from '../context/library/LibraryContext';
-import AddISBN from '../components/AddISBN';
-import AddManual from '../components/AddManual';
 
 const Add = () => {
-  const [isManual, setIsManual] = useState(false);
   const { state, dispatch } = useContext(LibraryContext);
+
+  const [isManual, setIsManual] = useState(false);
+  const [bg, setBg] = useState('transparent');
+  const [numCols, setNumCols] = useState(1);
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    publisher: '',
+    pages: 0,
+    cover: '',
+    ISBN: '',
+  });
+
+  const inputs = [
+    { id: 'title', value: book.title },
+    { id: 'author', value: book.author },
+    { id: 'publisher', value: book.publisher },
+    { id: 'pages', value: book.pages, type: 'number' },
+  ];
 
   useEffect(() => {
     dispatch({ type: 'DISPLAY_X' });
   }, [dispatch]);
 
+  const fac = new FastAverageColor();
+
+  const lookupISBN = (e) => {
+    try {
+      isbn.resolve(e.target.value, function (err, found) {
+        if (!err) {
+          setBook((prev) => ({
+            ...prev,
+            title: found?.title || '',
+            cover: found?.imageLinks?.thumbnail || '',
+            pages: found?.pageCount || '',
+            publisher: found?.publisher || '',
+            author: found?.authors[0] || '',
+            ISBN: e.target.value || '',
+          }));
+        } else {
+          console.log(err);
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getBgColor = (e) => {
+    try {
+      fac
+        .getColorAsync(e.target.value)
+        .then((color) => {
+          setBg(() => color.rgba);
+        })
+        .catch((e) => {
+          setBg(() => 'transparent');
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const update = (e) => {
+    setBook((prev) => ({
+      ...prev,
+      [`${e.target.id}`]: e.target.value,
+    }));
+
+    if (
+      !book.title.length &&
+      !book.author.length &&
+      !book.publisher.length &&
+      book.pages === 0 &&
+      !book.cover.length &&
+      !book.ISBN.length
+    ) {
+      setNumCols(1);
+    } else {
+      setNumCols(2);
+    }
+  };
+
   return (
-    <div className='flex justify-center items-center flex-grow h-full w-full'>
-      <div className='grid grid-cols-1 w-screen h-full'>
+    <div
+      className={`grid grid-cols-${numCols} w-full place-items-center mt-20 md:mt-0`}
+      style={{ height: '100%' }}
+    >
+      <div className='p-10'>
+        <h1 className='mb-1'>Add</h1>
         {isManual ? (
-          <AddManual toggler={() => setIsManual(false)} />
+          <>
+            <div className='grid grid-cols-2 gap-4'>
+              {inputs.map((e) => (
+                <Input
+                  key={e.id}
+                  id={e.id}
+                  placeholder={e.placeholder}
+                  value={e.value}
+                  type={e.type}
+                  changeHandler={update}
+                />
+              ))}
+            </div>
+            <Input
+              id='cover'
+              placeholder='Cover URL'
+              value={book.cover}
+              changeHandler={update}
+              keydownHandler={getBgColor}
+            />
+            <button
+              className='button w-full py-1 reverse'
+              onClick={() => setIsManual(false)}
+            >
+              Search with ISBN
+            </button>
+          </>
         ) : (
-          <AddISBN toggler={() => setIsManual(true)} />
+          <>
+            <Input
+              id='ISBN'
+              value={book.ISBN}
+              changeHandler={update}
+              keydownHandler={lookupISBN}
+            />
+            <button
+              className='button w-full py-1 reverse'
+              onClick={() => setIsManual(true)}
+            >
+              Import manually
+            </button>
+          </>
         )}
       </div>
+      {numCols > 1 && (
+        <div
+          className='w-full place-items-center h-full'
+          style={{ background: bg }}
+        >
+          <div className='flex justify-center items-center h-full'>
+            <div className=''>
+              <img className='h-96 m-auto' src={book.cover} />
+              <div className='text-center my-5'>
+                <h1 className='title'>{book.title}</h1>
+                <h2 className='author'>{book.author}</h2>
+                <h3 className='publisher'>{book.publisher}</h3>
+              </div>
+              <button className='button reverse w-full py-1'>Add</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
