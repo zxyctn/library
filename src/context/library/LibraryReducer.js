@@ -13,7 +13,7 @@ const libraryReducer = (state, action) => {
     case 'ADD_BOOK':
       return {
         ...state,
-        books: [...books, action.payload],
+        books: [...state.books, { ...action.payload, id: +new Date() }],
       };
     case 'EDIT_BOOK':
       return {

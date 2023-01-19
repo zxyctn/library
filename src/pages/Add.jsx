@@ -1,24 +1,31 @@
 import { useState, useContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { FastAverageColor } from 'fast-average-color';
 import isbn from 'node-isbn';
+import validUrl from 'valid-url';
 
 import Input from '../components/Input';
 import LibraryContext from '../context/library/LibraryContext';
 
 const Add = () => {
-  const { state, dispatch } = useContext(LibraryContext);
+  const { _, dispatch } = useContext(LibraryContext);
+  const navigate = useNavigate();
 
-  const [isManual, setIsManual] = useState(false);
-  const [bg, setBg] = useState('transparent');
-  const [numCols, setNumCols] = useState(1);
-  const [book, setBook] = useState({
+  const initialState = {
     title: '',
     author: '',
     publisher: '',
     pages: 0,
     cover: '',
     ISBN: '',
-  });
+    read: 0,
+  };
+
+  const [isManual, setIsManual] = useState(false);
+  const [bg, setBg] = useState('transparent');
+  const [numCols, setNumCols] = useState(1);
+  const [book, setBook] = useState(initialState);
 
   const inputs = [
     { id: 'title', value: book.title },
@@ -40,14 +47,16 @@ const Add = () => {
           setBook((prev) => ({
             ...prev,
             title: found?.title || '',
-            cover: found?.imageLinks?.thumbnail || '',
+            cover: validUrl.isUri(found?.imageLinks?.thumbnail)
+              ? found?.imageLinks?.thumbnail
+              : '',
             pages: found?.pageCount || '',
             publisher: found?.publisher || '',
             author: found?.authors[0] || '',
             ISBN: e.target.value || '',
           }));
         } else {
-          console.log(err);
+          setBook((prev) => ({ ...initialState, ISBN: e.target.value }));
         }
       });
     } catch (err) {
@@ -57,14 +66,16 @@ const Add = () => {
 
   const getBgColor = (e) => {
     try {
-      fac
-        .getColorAsync(e.target.value)
-        .then((color) => {
-          setBg(() => color.rgba);
-        })
-        .catch((e) => {
-          setBg(() => 'transparent');
-        });
+      validUrl.isUri(e.target.value)
+        ? fac
+            .getColorAsync(e.target.value, { algorithm: 'sqrt' })
+            .then((color) => {
+              setBg(() => color.rgba);
+            })
+            .catch((e) => {
+              setBg(() => 'transparent');
+            })
+        : setBg(() => 'transparent');
     } catch (err) {
       console.log(err);
     }
@@ -87,6 +98,20 @@ const Add = () => {
       setNumCols(1);
     } else {
       setNumCols(2);
+    }
+  };
+
+  const addBook = () => {
+    if (
+      book.title.length &&
+      book.author.length &&
+      book.pages !== 0 &&
+      book.cover.length
+    ) {
+      dispatch({ type: 'ADD_BOOK', payload: book });
+      navigate('/');
+    } else {
+      toast.error('Please fill in book details.');
     }
   };
 
@@ -155,7 +180,9 @@ const Add = () => {
                 <h2 className='author'>{book.author}</h2>
                 <h3 className='publisher'>{book.publisher}</h3>
               </div>
-              <button className='button reverse w-full py-1'>Add</button>
+              <button className='button reverse w-full py-1' onClick={addBook}>
+                Add
+              </button>
             </div>
           </div>
         </div>

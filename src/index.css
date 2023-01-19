@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+#app {
   font-family: 'Libre Bodoni', serif;
   font-size: xx-large;
 }

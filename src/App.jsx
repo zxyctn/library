@@ -1,21 +1,26 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Add from './pages/Add';
+import BookDetails from './pages/BookDetails';
 import { LibraryProvider } from './context/library/LibraryContext';
 
 function App() {
   return (
     <LibraryProvider>
       <Router>
-        <div className='flex flex-col h-screen w-screen'>
+        <div className='flex flex-col h-screen w-screen' id='app'>
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/add' element={<Add />} />
+            <Route path='/:id' element={<BookDetails />} />
           </Routes>
         </div>
+        <ToastContainer />
       </Router>
     </LibraryProvider>
   );
