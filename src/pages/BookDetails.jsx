@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { FastAverageColor } from 'fast-average-color';
 
 import LibraryContext from '../context/library/LibraryContext';
+import Pages from '../components/helpers/Pages';
+import Details from '../components/helpers/Details';
 
 const BookDetails = () => {
   const { books, dispatch } = useContext(LibraryContext);
@@ -36,27 +38,12 @@ const BookDetails = () => {
         <div className='flex'>
           <img src={book.cover} className='w-80' />
           <div className='m-auto w-80'>
-            <div className='h-fit w-fit m-auto px-5'>
-              <h1 className='text-5xl'>
-                <strong>{book.title}</strong>
-              </h1>
-              <h2>
-                <strong>{book.author}</strong>
-              </h2>
-              <h3>{book.publisher}</h3>
-            </div>
+            <Details id={book.id} />
           </div>
         </div>
       </div>
 
-      <div className='flex justify-center'>
-        <div className='border-2 border-black h-max w-80 text-center text-5xl py-5 bg-black text-white'>
-          {book.read}
-        </div>
-        <div className='border-2 border-black h-max w-80 text-center text-5xl py-5'>
-          {book.pages}
-        </div>
-      </div>
+      <Pages id={book.id} />
     </div>
   );
 };

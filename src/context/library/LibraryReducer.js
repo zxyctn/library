@@ -16,9 +16,12 @@ const libraryReducer = (state, action) => {
         books: [...state.books, { ...action.payload, id: +new Date() }],
       };
     case 'EDIT_BOOK':
+      const idx = state.books.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.books[idx] = action.payload;
       return {
         ...state,
-        books: [...books, action.payload],
       };
     case 'REMOVE_BOOK':
       return {
