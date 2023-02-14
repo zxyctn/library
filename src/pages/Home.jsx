@@ -8,6 +8,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch({ type: 'DISPLAY_+' });
+    dispatch({
+      type: 'SET_FOREGROUND',
+      payload: 'black',
+    });
   }, [dispatch]);
 
   if (!books.length) {

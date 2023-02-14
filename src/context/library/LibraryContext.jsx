@@ -10,7 +10,7 @@ export const LibraryProvider = ({ children }) => {
     books: [
       {
         id: 1,
-        cover: '../public/133206.jpg',
+        cover: 'https://m.media-amazon.com/images/I/51UuSI9g6lL.jpg',
         title: '1984',
         author: 'George Orwell',
         publisher: 'Penguin',
@@ -21,7 +21,8 @@ export const LibraryProvider = ({ children }) => {
       },
       {
         id: 2,
-        cover: '../public/91LUbAcpACL.jpg',
+        cover:
+          'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/91LUbAcpACL.jpg',
         title: 'Animal Farm',
         author: 'George Orwell',
         publisher: 'Penguin',
@@ -32,7 +33,8 @@ export const LibraryProvider = ({ children }) => {
       },
       {
         id: 3,
-        cover: '../public/71tbalAHYCL.jpg',
+        cover:
+          'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71tbalAHYCL.jpg',
         title: 'IKIGAI',
         author: 'Héctor García',
         publisher: 'Penguin',

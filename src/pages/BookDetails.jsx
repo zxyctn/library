@@ -6,6 +6,8 @@ import LibraryContext from '../context/library/LibraryContext';
 import Pages from '../components/helpers/Pages';
 import Details from '../components/helpers/Details';
 
+import { getForegroundColor } from '../helpers';
+
 const BookDetails = () => {
   const { books, dispatch } = useContext(LibraryContext);
 
@@ -20,6 +22,10 @@ const BookDetails = () => {
     .getColorAsync(book.cover, { algorithm: 'sqrt' })
     .then((color) => {
       setBg(() => color.rgba);
+      dispatch({
+        type: 'SET_FOREGROUND',
+        payload: getForegroundColor(color.hex),
+      });
     })
     .catch((e) => {
       setBg(() => 'transparent');

@@ -27,24 +27,24 @@ const Details = ({ id }) => {
 
   return (
     <div className='px-10'>
-      {!editTitle ? (
-        <h1 className='text-5xl'>
+      <h1 className='text-5xl'>
+        {!editTitle ? (
           <strong onClick={() => setEditTitle(true)}>{book.title}</strong>
-        </h1>
-      ) : (
-        <strong>
-          <input
-            type='text'
-            className='text-5xl bg-transparent focus:ring-0 focus:border-0 p-0'
-            placeholder={book.title}
-            onBlur={update}
-            value={book.title}
-            onChange={changeHandler}
-            autoFocus={true}
-            name='title'
-          />
-        </strong>
-      )}
+        ) : (
+          <strong>
+            <input
+              type='text'
+              className='text-5xl bg-transparent focus:ring-0 focus:border-0 p-0'
+              placeholder={book.title}
+              onBlur={update}
+              value={book.title}
+              onChange={changeHandler}
+              autoFocus={true}
+              name='title'
+            />
+          </strong>
+        )}
+      </h1>
       {!editAuthor ? (
         <h2 className='text-3xl'>
           <strong onClick={() => setEditAuthor(true)}>{book.author}</strong>

@@ -28,6 +28,11 @@ const libraryReducer = (state, action) => {
         ...state,
         books: books.filter((book) => book.id != action.payload),
       };
+    case 'SET_FOREGROUND':
+      document.getElementById('app').style.color = action.payload;
+      document.getElementById('app').style.transition = 'color 0.5s ease-out';
+
+      return state;
     default:
       return state;
   }

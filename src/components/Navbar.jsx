@@ -9,20 +9,19 @@ const Navbar = () => {
   return (
     <div className='flex bg-transparent justify-between my-10 px-10 absolute w-screen h-20'>
       <Link to='/'>library</Link>
-      {context.displayX ? (
-        <Link to='/'>
-          <div
-            style={{
-              transform: 'rotateY(0deg) rotate(45deg)',
-              transition: 'transform 2s',
-            }}
-          >
-            +
-          </div>
-        </Link>
-      ) : (
-        <Link to='/add'>+</Link>
-      )}
+
+      <Link to={context.displayX ? '/' : '/add'}>
+        <div
+          style={{
+            transform: `rotateY(0deg) rotate(${
+              context.displayX ? '45' : '0'
+            }deg)`,
+            transition: 'transform 0.5s ease-out',
+          }}
+        >
+          +
+        </div>
+      </Link>
     </div>
   );
 };
