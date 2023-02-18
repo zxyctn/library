@@ -9,10 +9,10 @@ const Navbar = () => {
 
   return (
     <div className='flex bg-transparent justify-between my-10 px-10 absolute w-screen h-20'>
-      <Link to='/'>library</Link>
+      <Link to='/library/'>library</Link>
 
       <div className='block'>
-        <Link to={displayX ? '/' : '/add'}>
+        <Link to={displayX ? '/library/' : '/library/add'}>
           <div
             style={{
               transform: `rotateY(0deg) rotate(${displayX ? '45' : '0'}deg)`,
@@ -36,7 +36,7 @@ const Navbar = () => {
               dispatch({
                 type: 'REMOVE_BOOK',
               });
-              navigate('/');
+              navigate('/library/');
             }
           }}
         >

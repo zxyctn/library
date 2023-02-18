@@ -109,7 +109,7 @@ const Add = () => {
       book.cover.length
     ) {
       dispatch({ type: 'ADD_BOOK', payload: book });
-      navigate('/');
+      navigate('/library/');
     } else {
       toast.error('Please fill in book details.');
     }

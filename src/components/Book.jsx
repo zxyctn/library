@@ -19,7 +19,7 @@ const Book = ({ info }) => {
     });
 
   return (
-    <Link to={`/${book.id}`}>
+    <Link to={`/library/${book.id}`}>
       <div className='flex justify-center items-center'>
         <div
           className='h-80 w-80 absolute'

@@ -15,9 +15,9 @@ function App() {
         <div className='flex flex-col h-screen w-screen' id='app'>
           <Navbar />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/add' element={<Add />} />
-            <Route path='/:id' element={<BookDetails />} />
+            <Route path='/library/' element={<Home />} />
+            <Route path='/library/add' element={<Add />} />
+            <Route path='/library/:id' element={<BookDetails />} />
           </Routes>
         </div>
         <ToastContainer />
