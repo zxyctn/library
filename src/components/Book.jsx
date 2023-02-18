@@ -4,7 +4,7 @@ import { FastAverageColor } from 'fast-average-color';
 import ReactImageAppear from 'react-image-appear';
 
 const Book = ({ info }) => {
-  const [book, setBook] = useState(info);
+  const [book, _] = useState(info);
   const [bg, setBg] = useState('transparent');
 
   const fac = new FastAverageColor();
