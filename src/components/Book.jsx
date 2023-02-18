@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FastAverageColor } from 'fast-average-color';
+import ReactImageAppear from 'react-image-appear';
 
 const Book = ({ info }) => {
   const [book, setBook] = useState(info);
@@ -27,9 +28,16 @@ const Book = ({ info }) => {
             height: `${(book.read / book.pages) * 100}%`,
             bottom: 0,
             zIndex: -1,
+            transition: 'background 0.5s ease-in',
           }}
         ></div>
-        <img className='h-72' src={book.cover} style={{ zIndex: 1 }} />
+        <ReactImageAppear
+          className='h-72'
+          src={book.cover}
+          style={{ zIndex: 1 }}
+          animation='fadeIn'
+          animationDuration='0.5s'
+        />
       </div>
     </Link>
   );

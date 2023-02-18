@@ -6,11 +6,13 @@ const LibraryContext = createContext();
 
 export const LibraryProvider = ({ children }) => {
   const initialState = {
+    id: null,
     displayX: false,
+    displayMinus: false,
     books: [
       {
         id: 1,
-        cover: 'https://m.media-amazon.com/images/I/51UuSI9g6lL.jpg',
+        cover: 'https://m.media-amazon.com/images/I/91SZSW8qSsL.jpg',
         title: '1984',
         author: 'George Orwell',
         publisher: 'Penguin',
@@ -21,12 +23,11 @@ export const LibraryProvider = ({ children }) => {
       },
       {
         id: 2,
-        cover:
-          'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/91LUbAcpACL.jpg',
-        title: 'Animal Farm',
-        author: 'George Orwell',
-        publisher: 'Penguin',
-        pages: 288,
+        cover: 'https://m.media-amazon.com/images/I/71h2Cp+305L.jpg',
+        title: 'The Alchemist',
+        author: 'Paulo Coelho',
+        publisher: 'Harper Collins',
+        pages: 192,
         read: 100,
         started: null,
         finished: null,

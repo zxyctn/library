@@ -12,7 +12,7 @@ const Home = () => {
       type: 'SET_FOREGROUND',
       payload: 'black',
     });
-  }, [dispatch]);
+  }, [dispatch, books]);
 
   if (!books.length) {
     return <div className='grid place-items-center h-full'>...</div>;

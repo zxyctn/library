@@ -8,7 +8,14 @@ const libraryReducer = (state, action) => {
     case 'DISPLAY_+':
       return {
         ...state,
+        displayMinus: false,
         displayX: false,
+      };
+    case 'DISPLAY_MINUS':
+      return {
+        ...state,
+        id: action.payload,
+        displayMinus: true,
       };
     case 'ADD_BOOK':
       return {
@@ -20,13 +27,12 @@ const libraryReducer = (state, action) => {
         (item) => item.id === action.payload.id
       );
       state.books[idx] = action.payload;
-      return {
-        ...state,
-      };
+      return state;
     case 'REMOVE_BOOK':
       return {
         ...state,
-        books: books.filter((book) => book.id != action.payload),
+        books: state.books.filter((book) => book.id !== state.id),
+        id: null,
       };
     case 'SET_FOREGROUND':
       document.getElementById('app').style.color = action.payload;

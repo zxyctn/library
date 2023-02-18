@@ -118,7 +118,7 @@ const Add = () => {
   return (
     <div
       className={`grid grid-cols-${numCols} w-full place-items-center mt-20 md:mt-0`}
-      style={{ height: '100%' }}
+      style={{ height: '100%', transition: 'height 0.5s ease-out' }}
     >
       <div className='p-10'>
         <h1 className='mb-1'>Add</h1>
@@ -170,7 +170,7 @@ const Add = () => {
       {numCols > 1 && (
         <div
           className='w-full place-items-center h-full'
-          style={{ background: bg }}
+          style={{ background: bg, transition: 'background 0.5s ease-in' }}
         >
           <div className='flex justify-center items-center h-full'>
             <div className=''>
