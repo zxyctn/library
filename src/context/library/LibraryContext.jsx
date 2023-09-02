@@ -12,7 +12,7 @@ export const LibraryProvider = ({ children }) => {
     books: [
       {
         id: 1,
-        cover: 'https://m.media-amazon.com/images/I/91SZSW8qSsL.jpg',
+        cover: '/library/1984.jpg',
         title: '1984',
         author: 'George Orwell',
         publisher: 'Penguin',
@@ -23,7 +23,7 @@ export const LibraryProvider = ({ children }) => {
       },
       {
         id: 2,
-        cover: 'https://m.media-amazon.com/images/I/71h2Cp+305L.jpg',
+        cover: '/library/alchemist.jpg',
         title: 'The Alchemist',
         author: 'Paulo Coelho',
         publisher: 'Harper Collins',
@@ -35,7 +35,7 @@ export const LibraryProvider = ({ children }) => {
       {
         id: 3,
         cover:
-          'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71tbalAHYCL.jpg',
+          '/library/ikigai.jpg',
         title: 'IKIGAI',
         author: 'Héctor García',
         publisher: 'Penguin',
